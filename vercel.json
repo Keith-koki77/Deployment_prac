@@ -6,11 +6,7 @@
             "config": {
                 "maxLambdaSize": "15mb",
                 "runtime": "python3.9",
-                "installCommand": "apk add --no-cache pkgconfig && pip install -r requirements.txt",
-                "env": {
-                    "MYSQLCLIENT_CFLAGS": "-I/usr/include/mysql -I/usr/include/mysql/mysql -I/usr/include/mariadb",
-                    "MYSQLCLIENT_LDFLAGS": "-L/usr/lib/mysql -L/usr/lib/mariadb"
-                }
+                "installCommand": "apk add --no-cache libmysqlclient-dev && pip install -r requirements.txt"
             }
         }
     ],
