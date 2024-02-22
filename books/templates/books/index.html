@@ -1,0 +1,54 @@
+{% extends 'books/base.html' %}
+
+{% block title %}Welcome{% endblock %}
+
+{% block content %}
+    <div class="container mx-auto py-8">
+        <h1 class="text-3xl font-semibold mb-6">Featured Books</h1>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"></div>
+            {% for file in files %}
+            <div class="bg-white p-4 rounded-lg shadow-md">
+                <img src="{{ file.image.url }}" alt="{{ file.title }}" class="w-full h-48 object-cover mb-4">
+                <h2 class="text-xl font-bold mb-2">{{ file.title }}</h2>
+                <p class="text-gray-600 mb-2">Author: {{ file.author }}</p>
+                <p class="text-gray-700">{{ file.description }}</p>
+                <p class="text-gray-800 mt-4">{{ file.price }}</p>
+            </div>
+            {% endfor %}
+    </div>
+
+
+
+    {% for category, files in files_by_category.items %}
+            {% if files %}
+                <div style="grid-column: span 3; text-align: center;">
+                    <h1 style="font-size: 24px; font-weight: bold; margin-top: 20px; margin-bottom: 10px;">{{ category.name }}</h1>
+                </div>
+                <div style="display: flex; flex-wrap: wrap; justify-content: left; gap: 20px;">
+                    {% for file in files %}
+                        {% if forloop.counter <= 3 %} {# Display only the first 6 files #}
+                            <div style="flex: 0 0 calc(33.33% - 20px); margin-bottom: 20px; border: none; border-radius: 5px; text-align: center;">
+                                {% if file.image %}
+                                    <img src="{{ file.image.url }}" alt="{{ file.title }} Image" style="width: 100%; border-top-left-radius: 5px; border-top-right-radius: 5px;">
+                                {% endif %}
+                                <div style="padding: 10px;">
+                                    <h2 style="font-size: 20px; margin-bottom: 10px; font-family: Arial, sans-serif;"><strong>{{ file.title }}</strong></h2>
+                                    <p style="font-size: 16px; margin-bottom: 5px; font-family: Arial, sans-serif;"><strong>Author:</strong> {{ file.author }}</p>
+                                    <p style="font-size: 16px; margin-bottom: 5px; font-family: Arial, sans-serif;"><strong>Category:</strong> {{ file.category }}</p>
+                                    <p style="font-size: 16px; margin-bottom: 10px; font-family: Arial, sans-serif;"><strong>Price:</strong> {{ file.price }}</p>
+                                    <p style="font-size: 16px; margin-bottom: 10px; font-family: Arial, sans-serif;"><strong>Rating:</strong> {{ file.rating }}</p>
+                                    <a href="{% url 'file:payment' file_id=file.id %}" style="display: inline-block; padding: 8px 16px; background-color: #FD6C01; color: white; border-radius: 5px; text-decoration: none; font-family: Arial, sans-serif;">Buy Book</a>
+                                </div>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+                {% if files|length > 3 %} {# Display "MORE BOOKS" button if there are more than 6 files #}
+                    <div style="text-align: center;">
+                        <a href="{% url 'file:files' %}" style="font-size: 18px; color: #FD6C01; text-decoration: none; font-weight: bold; font-family: Arial, sans-serif;">MORE BOOKS</a>
+                    </div>
+                {% endif %}
+            {% endif %}
+    {% endfor %}      
+     
+{% endblock %}

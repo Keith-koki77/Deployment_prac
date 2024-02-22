@@ -1,0 +1,73 @@
+{% extends 'books/base.html' %}
+
+{% block title %}{{ file.name }}{% endblock %}
+
+{% block content %}
+<div class="grid grid-cols-5 gap-6" style="margin-top: 65px;">
+    <div class="col-span-3">
+        <img src="{{ file.image.url }}" class="rounded-xl">
+    </div>
+
+    <div class="col-span-2 p-6 bg-gray-100 rounded-xl">
+        <h1 class="mb-6 text-3xl">{{ file.title }}</h1>
+        <p class="text-gray-500"><strong>Ksh: </strong>{{ file.price }}</p>
+        <p class="text-gray-500"><strong>Freelancer: </strong>{{ file.created_by.username }}</p>
+    
+        {% if file.description %}
+            <p class="text-gray-700">
+                <strong class="text-gray-500">Description:</strong><br>
+                {{ file.description }}
+            </p>
+        {% endif %}
+
+        {% if request.user == file.created_by %}
+            <div class="mt-6 p-6 bg-white rounded-xl">
+                <p>This is your book!</p>
+
+                <a href="{% url 'file:edit' file.id %}" style="display: inline-block; margin-top: 6px; padding: 0.75rem 2.5rem; font-size: 1.125rem; font-weight: 600; background-color: teal; color: #ffffff; border-radius: 0.75rem;">Edit</a>
+
+                <a href="{% url 'file:delete' file.id %}" style="display: inline-block; margin-top: 6px; padding: 0.75rem 2.5rem; font-size: 1.125rem; font-weight: 600; background-color: #9e211e; color: #ffffff; border-radius: 0.75rem;">Delete</a>
+            </div>
+        {% else %}  
+            <a href="{% url 'conversation:new' file.id %}" style="display: inline-block; margin-top: 6px; padding: 0.75rem 1.5rem; font-size: 1.125rem; font-weight: 600; background-color: #34d399; color: #ffffff; border-radius: 0.75rem; text-decoration: none; cursor: pointer; transition: background-color 0.25s ease-in-out">Contact seller</a>
+        {% endif %}
+
+            
+        {% if user_has_paid %}
+            <!-- Display the download button -->
+            <a href="{{ file.file.url }}" download>Download File</a>
+        {% else %}
+            <!-- Display a message or button prompting the user to proceed to the payment page -->
+            <p>You need to make a payment to access the download button.</p>
+        {% endif %}
+
+        <a href="{% url 'file:payment' file.id %}" style="display: inline-block; margin-top: 6px; padding: 0.75rem 1.5rem; font-size: 1.125rem; font-weight: 600; background-color: #45d399; color: #ffffff; border-radius: 0.75rem; text-decoration: none; cursor: pointer; transition: background-color 0.25s ease-in-out">Pay Now</a>
+
+    </div>
+</div>
+
+<div class="mt-6 px-6 py-12 bg-gray-100 rounded-xl">
+    <h2 class="mb-12 text-2xl text-center">Related Books</h2>
+
+    <div class="grid grid-cols-3 gap-3">
+        {% for file in related_files %}
+            <div>
+                <a href="{% url 'file:detail' file.id %}">
+                    <div>
+                        <img src="{{ file.image.url }}" class="rounded-t-xl">
+                    </div>
+
+                    <div class="p-6 bg-white rounded-b-xl">
+                        <h2 class="text-2xl">{{ file.title }}</h2>
+                        <p class="text-gray-500">{{ file.categoty }}</p>
+                        <p class="text-gray-500">{{ file.rating }}</p>
+                        <p class="text-gray-500">{{ file.file_type }}</p>
+                        <p class="text-gray-500">{{ file.file }}</p>
+                        <p class="text-gray-500">Price: {{ file.price }}</p>
+                    </div>
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,80 @@
+{% extends 'books/base.html' %}
+
+{% block title %}FAQS{% endblock %}
+
+{% block content %}
+	<style>
+        /* Smooth scrolling behavior */
+        html {
+            scroll-behavior: smooth;
+        }
+        /* FAQ container styles */
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        /* FAQ item styles */
+        .faq-item {
+            margin-bottom: 20px;
+        }
+        /* FAQ question styles */
+        .faq-question {
+            font-weight: bold;
+            cursor: pointer;
+        }
+        /* FAQ answer styles */
+        .faq-answer {
+            display: none;
+        }
+    </style>
+
+	<body style="font-family: Arial, sans-serif; font-size: 16px; line-height: 1.5; background-color: #f5f5f5; margin: 0; padding: 0;">
+		<div class="faq-container" style="max-width: 800px; margin: 0 auto; padding: 20px; background-color: #fff;">
+		    <h1 style="font-size: 2rem; margin-top: 30px; margin-bottom: 20px;">Frequently Asked Questions</h1>
+
+		    <div class="faq-item" style="margin-bottom: 20px;">
+			    <div class="faq-question" onclick="toggleFAQ(this)" style="font-weight: bold; cursor: pointer; background-color: teal; color: #fff; padding: 10px 20px; border-radius: 5px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); transition: background-color 0.3s ease;">
+			        How can I create an account?
+			    </div>
+		        <div class="faq-answer" style="display: none;">
+		            <p>To create an account, simply click on the "Sign Up" button on the top navigation bar. Fill in the required information and follow the prompts to complete the registration process.</p>
+		        </div>
+		    </div>
+
+		    <div class="faq-item" style="margin-bottom: 20px;">
+			    <div class="faq-question" onclick="toggleFAQ(this)" style="font-weight: bold; cursor: pointer; background-color: teal; color: #fff; padding: 10px 20px; border-radius: 5px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); transition: background-color 0.3s ease;">
+			        How do I search for books?
+			    </div>
+		        <div class="faq-answer" style="display: none;">
+		            <p>You can search for books by clicking the Browse Button located at the top of the page in the Dropdown Menu Button. You can also browse through different categories to discover books.</p>
+		        </div>
+		    </div>
+
+
+		    <div class="faq-item" style="margin-bottom: 20px;">
+			    <div class="faq-question" onclick="toggleFAQ(this)" style="font-weight: bold; cursor: pointer; background-color: teal; color: #fff; padding: 10px 20px; border-radius: 5px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); transition: background-color 0.3s ease;">
+			        Can I download books for offline reading
+			    </div>
+		        <div class="faq-answer" style="display: none;">
+		            <p>Yes, if the book is available for download. You can check the book details to see if it's available for download and follow the instructions provided to download the book.</p>
+		        </div>
+		    </div>
+
+		    <!-- Add more FAQ items as needed -->
+
+		</div>
+	</body>
+
+	<script>
+	    // Function to toggle FAQ answer visibility
+	    function toggleFAQ(element) {
+	        var answer = element.nextElementSibling;
+	        if (answer.style.display === "block") {
+	            answer.style.display = "none";
+	        } else {
+	            answer.style.display = "block";
+	        }
+	    }
+	</script>
+{% endblock %}

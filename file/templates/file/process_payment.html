@@ -1,0 +1,17 @@
+{% extends 'books/base.html' %}
+
+{% block title %}Payment{% endblock %}
+
+{% block content %}
+	<h1>Payment Processing</h1>
+
+    <!-- Display a confirmation message -->
+    <p>Thank you for your payment!</p>
+    <p>Your payment has been successfully processed.</p>
+
+    <!-- Optionally, provide additional details or instructions -->
+    <p>You can now download the file.</p>
+
+    <!-- Add a link to redirect users to the file download page -->
+    <a href="{{ file.file.url }}" style="margin-top: 0.5rem; padding: 0.5rem 0.9rem; display: inline-block; background-color: #FD6C01; font-size: 1.5rem; border-radius: 1.5rem; color: white; text-decoration: none;">Download File</a>
+{% endblock %}

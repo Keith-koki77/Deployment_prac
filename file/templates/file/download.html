@@ -1,0 +1,12 @@
+{% extends 'books/base.html' %}
+
+{% block title %}Download{% endblock %}
+
+{% block content %}
+	<h1 style="color:#333;">File Details</h1>
+    <p style="">Title: {{ file.title }}</p>
+    <p style="">Author: {{ file.author }}</p>
+    <p style="">Publication Year: {{ file.publication_year }}</p>
+    <!-- Add more details about the file as needed -->
+    <a href="{{ file.file.url }}" target="_blank" style="align:center; margin-top: 0.5rem; padding: 0.5rem 0.9rem; display: inline-block; background-color: #FD6C01; font-size: 1.5rem; border-radius: 1.5rem; color: white; text-decoration: none;">Download File</a>
+{% endblock %}
