@@ -6,7 +6,7 @@
             "config": {
                 "maxLambdaSize": "15mb",
                 "runtime": "python3.9",
-                "installCommand": "apk add --no-cache libmysqlclient-dev && pip install -r requirements.txt"
+                "buildCommand": "apk add --no-cache mariadb-dev && pip install -r requirements.txt"
             }
         }
     ],
