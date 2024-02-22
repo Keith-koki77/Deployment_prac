@@ -6,7 +6,7 @@
             "config": {
                 "maxLambdaSize": "15mb",
                 "runtime": "python3.9",
-                "buildCommand": "apt-get update && apt-get install -y libmysqlclient-dev && pip install -r requirements.txt"
+                "buildCommand": "export MYSQLCLIENT_CFLAGS=\"$(mysql_config --cflags)\" && export MYSQLCLIENT_LDFLAGS=\"$(mysql_config --libs)\" && pip install -r requirements.txt"
             }
         }
     ],
@@ -17,3 +17,4 @@
         }
     ]
 }
+
