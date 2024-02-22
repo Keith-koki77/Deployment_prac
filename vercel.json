@@ -7,6 +7,7 @@
                 "maxLambdaSize": "15mb",
                 "runtime": "python3.9",
                 "installCommand": "sudo apt-get update && sudo apt-get install -y libmysqlclient-dev && pip install -r requirements.txt"
+                "installCommand": "apk add --no-cache pkgconfig && pip install -r requirements.txt"
             }
         }
     ],
