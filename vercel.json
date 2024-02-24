@@ -5,12 +5,15 @@
       "src": "library_1/wsgi.py",
       "use": "@vercel/python",
       "config": { "maxLambdaSize": "15mb", "runtime": "python3.9" }
-    },
-    
+    }
   ],
   "routes": [
     {
-      "src": "/(.*)",
+      "src": "/api/(.*)", // Assuming your Django API endpoints are under /api/
+      "dest": "library_1/wsgi.py"
+    },
+    {
+      "src": "/(.*)", // Match all other routes
       "dest": "library_1/wsgi.py"
     }
   ]
