@@ -9,12 +9,13 @@
   ],
   "routes": [
     {
-      "src": "/api/(.*)", // Assuming your Django API endpoints are under /api/
+      "src": "/api/(.*)",
       "dest": "library_1/wsgi.py"
     },
     {
-      "src": "/(.*)", // Match all other routes
+      "src": "/(.*)",
       "dest": "library_1/wsgi.py"
     }
   ]
 }
+
