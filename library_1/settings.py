@@ -29,7 +29,7 @@ SECRET_KEY = 'django-insecure-%hh(=oo9ko95_1)zb@kq3r=%*#@9hjst=z=d$ogann0@_#qhv4
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['.vercel.app', '.now.sh', '127.0.0.1', 'localhost']
+ALLOWED_HOSTS = ['.vercel.app', '.now.sh', '127.0.0.1:8000', 'localhost']
 
 LOGIN_URL = '/login/'
 LOGIN_REDIRECT_URL = '/index/'
@@ -92,7 +92,7 @@ DATABASES = {
         'NAME': os.environ.get('DATABASE_NAME'),
         'USER': os.environ.get('DATABASE_USER'),
         'PASSWORD': os.environ.get('DATABASE_PASSWORD'),
-        'HOST': os.environ.get('DATABASE_HOST'), # For local development, use 'localhost' or '127.0.0.1'
+        'HOST': 'localhost' # For local development, use 'localhost' or '127.0.0.1'
         'PORT': os.environ.get('DATABASE_PORT'), # Default PostgreSQL port is usually '5432'
     }
 }
