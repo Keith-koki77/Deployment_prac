@@ -92,7 +92,7 @@ DATABASES = {
         'NAME': os.environ.get('DATABASE_NAME'),
         'USER': os.environ.get('DATABASE_USER'),
         'PASSWORD': os.environ.get('DATABASE_PASSWORD'),
-        'HOST': 'localhost' # For local development, use 'localhost' or '127.0.0.1'
+        'HOST': os.environ.get('DATABASE_HOST'), # For local development, use 'localhost' or '127.0.0.1'
         'PORT': os.environ.get('DATABASE_PORT'), # Default PostgreSQL port is usually '5432'
     }
 }
